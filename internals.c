@@ -81,12 +81,12 @@ int internal_cmd_environ(int argc, char *argv[])
 
 int internal_cmd_echo(int argc, char *argv[])
 {
-	printf("%s", argv[1]);
 	for (int i=1; i < argc; i++)
 	{
 		/**********************************************/
 		/*WRITE YOUR CODE HERE
 		/**********************************************/
+		printf("%s", argv[i]);
 		if (i != argc-1)
 		{
 			printf(" ");

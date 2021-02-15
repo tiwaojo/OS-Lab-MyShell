@@ -24,6 +24,9 @@ int internal_cmd_cd(int argc, char *argv[])
 		/**********************************************/
 		/*WRITE YOUR CODE HERE
 		/**********************************************/
+		int *result = chdir(argv[1]);
+		if (result != 0) return EXIT_FAILURE;
+		return EXIT_SUCCESS;
 	}
 
 	// If no parameter, report current directory
@@ -56,6 +59,7 @@ int internal_cmd_ls(int argc, char *argv[])
 		/**********************************************/
 		/*WRITE YOUR CODE HERE
 		/**********************************************/
+		printf("%s\n", item->d_name);
 	}
 	printf("\n");
 
@@ -77,6 +81,7 @@ int internal_cmd_environ(int argc, char *argv[])
 
 int internal_cmd_echo(int argc, char *argv[])
 {
+	printf("%s", argv[1]);
 	for (int i=1; i < argc; i++)
 	{
 		/**********************************************/
@@ -140,7 +145,9 @@ void internals_add_all()
 	/**********************************************/
 	/*WRITE YOUR CODE HERE
 	/**********************************************/
-	add_command("dir",   &internal_cmd_ls);
+	add_command("echo",   &internal_cmd_echo);
+	add_command("cd",   &internal_cmd_cd);
+	add_command("ls",   &internal_cmd_ls);
 	add_command("environ",   &internal_cmd_environ);
 	add_command("help", &internal_cmd_help);
 	add_command("quit", &internal_cmd_quit);

@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
 LFLAGS = 
 LIBS = -lm
-SOURCES = /*WRITE YOUR CODE HERE*/
+SOURCES = myshell.c internals.c utility.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
 BIN = myshell
 .PHONY: clean help

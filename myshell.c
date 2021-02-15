@@ -161,7 +161,8 @@ int main(int argc, char *argv[])
                 /**********************************************/
 		        /*WRITE YOUR CODE HERE
 		        /**********************************************/
-                last_exit = exit_code;
+		(*cmp_command.cmd_ptr)(argc, argv);
+                //last_exit = exit_code;
 
                 command_handled = 1;
             }

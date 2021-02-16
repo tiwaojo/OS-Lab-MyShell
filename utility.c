@@ -22,6 +22,17 @@
  * This function returns the current directory. Error
  * is handled silently. No linefeed is printed.
  */
+
+void util_work_dir(){
+	//*util_print_cwd() probably does the same thing. Just didn't realize it and kinda don't wat do delete it yet
+	char *buf;
+	if(getcwd(buf,sizeof(buf)) !=NULL){
+		printf("Current working directory: %s\n",buf);
+	}else{
+		exit(0);
+	}
+}
+
 char *util_print_cwd()
 {
 	// Request current directory

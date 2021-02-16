@@ -55,7 +55,7 @@ void split_string(char *buffer, char ***tokens_ptr, int *tokens_size)
     // Verify that tokenization works
     for (int i=0; i < count; i++)
     {
-        // printf("%s, ", tokens[i]);
+         printf("%s, ", tokens[i]);
     }
 
     *tokens_size = ++count;

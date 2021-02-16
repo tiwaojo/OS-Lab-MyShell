@@ -48,7 +48,14 @@ int internal_cmd_ls(int argc, char *argv[])
 	struct dirent *item;
 
 	// Open current directory
-	dirptr = opendir(".");
+	if (argc >= 0)
+	{
+		dirptr = opendir(argv[1]);
+	}
+	else
+	{
+		dirptr = opendir(".");
+	}
 
 	// Return error if dp is dull
 	if (dirptr == NULL) return 1;
@@ -148,6 +155,7 @@ void internals_add_all()
 	add_command("echo",   &internal_cmd_echo);
 	add_command("cd",   &internal_cmd_cd);
 	add_command("ls",   &internal_cmd_ls);
+	add_command("dir",   &internal_cmd_ls);
 	add_command("environ",   &internal_cmd_environ);
 	add_command("help", &internal_cmd_help);
 	add_command("quit", &internal_cmd_quit);

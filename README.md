@@ -3,8 +3,6 @@
 ## Description
 myshell - a command line interpreter designed to interface with the UNIX Operating System
 
-## Copyright
-
 ## Synopsis
 
 [myshell] [options] [command_string | file]

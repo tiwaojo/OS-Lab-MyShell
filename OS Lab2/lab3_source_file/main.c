@@ -57,7 +57,7 @@ void * check_grid(void *data) {
 			//Check if number already appeared
 			if(grid->used_table[num - 1] > 0) {
 				
-				//printf("%d already appeared in grid %d\n", num, (grid->vertical * 3) + grid->horizontal);
+				printf("%d already appeared in grid %d\n", num, (grid->vertical * 3) + grid->horizontal);
 				
 				//Release the memory used by our helper
 				free(grid);
@@ -154,7 +154,7 @@ void *check_column(void *data) {
 		//Check if number already appeared
 		if(col->used_table[num - 1] > 0) {
 			
-			//printf("%d already appeared %d times in column %d\n", num, col->used_table[num - 1], col->column);
+			printf("%d already appeared %d times in column %d\n", num, col->used_table[num - 1], col->column);
 			
 			//Release the memory used by our helper
 			free(col);

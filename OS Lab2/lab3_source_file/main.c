@@ -184,7 +184,7 @@ void read_puzzle() {
 	char *pos;
 	
 	//Open the puzzle file
-	fp = /* WRITE YOUR OWN CODE HERE*/;
+	fp = fopen("puzzle.txt", "r+");
 		
 	//Check if open failed
 	if(fp == NULL) {
@@ -291,7 +291,9 @@ int main(void) {
 	read_puzzle();
 	
 	//Initialize and set thread detached attribute, the attribute has been defined as attr
-	/* WRITE YOUR OWN CODE HERE*/ 
+	for(int i=0; i<NUM_THREADS; i++){
+		pthread_attr_init(&attr);
+	}
 	
 	//Start the subgrid checking
 	for(int i = 0; i < 3; i++) {		
@@ -305,7 +307,7 @@ int main(void) {
 			grid_helper->horizontal = j;
 						
 			//Create the thread and check if failed
-			if(/* WRITE YOUR OWN CODE HERE*/) {
+			if(pthread_create(&thread_id[j+3*i], &attr, check_grid, grid_helper)) {
 				printf("ERROR: Unable to create subgrid checking thread %d\n", i + 1);
 				exit(-1);
 			}		
@@ -324,7 +326,7 @@ int main(void) {
 		row_helper->row = i;
 				
 		//Create the thread and check if failed
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_create(&thread_id[i+NUM_CELLS], &attr, check_row, row_helper)) {
 			printf("ERROR: Unable to create row checking thread %d\n", i + 1);
 			exit(-1);
 		}		
@@ -336,13 +338,13 @@ int main(void) {
 	for(int i = 0; i < NUM_CELLS; i++) {		
 			
 		//Allocate space for the column data that will be passed to the thread
-		col_helper = /* WRITE YOUR OWN CODE HERE*/;
+		col_helper = (column_data *) calloc(1, sizeof(column_data));
 		
 		//Set the index
 		col_helper->column = i;
 				
 		//Create the thread and check if failed
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_create(&thread_id[i+2*NUM_CELLS], &attr, check_column, col_helper)) {
 			printf("ERROR: Unable to create column checking thread %d\n", i + 1);
 			exit(-1);
 		}		
@@ -360,11 +362,10 @@ int main(void) {
 	for(int i = 0; i < NUM_THREADS; i++) {
 			
 		//Try to do a thread join
-		if(/* WRITE YOUR OWN CODE HERE*/) {
+		if(pthread_join(thread_id[i], res)) {
 			printf("ERROR: Unable to join thread %d\n", i + 1);
 			exit(-1);
 		}
-		
 		//Check the result
 		if(*(*res) != 1) {
 			valid = 0;

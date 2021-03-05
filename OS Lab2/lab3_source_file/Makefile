@@ -1,14 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -std=c99 
 LFLAGS = 
 LIBS = -lm
 SOURCES = main.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
-BIN = main
-.PHONY: clean 
+BIN = myshell
+.PHONY: clean help
 
-sudoku : $(OBJECTS)
-	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ 
+myshell : $(OBJECTS)
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ -lpthread
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< 
@@ -20,5 +20,5 @@ clean:
 
 help:
 	@echo "Valid targets:"
-	# @echo "  all:    generates all binary files"
+	@echo "  all:    generates all binary files"
 	@echo "  clean:  removes .o and binary files"

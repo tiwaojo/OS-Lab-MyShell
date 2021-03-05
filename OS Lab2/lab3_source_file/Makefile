@@ -4,10 +4,10 @@ LFLAGS =
 LIBS = -lm
 SOURCES = main.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
-BIN = myshell
+BIN = main
 .PHONY: clean help
 
-myshell : $(OBJECTS)
+main : $(OBJECTS)
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@ -lpthread
 
 %.o : %.c

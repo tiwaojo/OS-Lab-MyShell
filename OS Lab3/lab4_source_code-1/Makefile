@@ -2,9 +2,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=gnu99
 LFLAGS = 
 LIBS = 
-SOURCES = hostd.c utility.c queue.c sigtrap.c test.c
+SOURCES = hostd.c utility.c queue.c sigtrap.c #test.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
-EXE = process hostd test
+EXE = process hostd #test
 .PHONY: clean help
 
 .PHONY: debug

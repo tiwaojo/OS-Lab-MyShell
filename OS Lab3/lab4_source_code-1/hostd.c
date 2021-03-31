@@ -179,9 +179,9 @@ int main(int argc, char *argv[])
     int time_tick = 0;
     for (; 1; time_tick++)
     {
-        int np = check_for_new_process(/*WRITE YOUR CODE HERE*/);
+        int np = check_for_new_process(/*WRITE YOUR CODE HERE*/pending_processes,time_tick,&rt,&hi,&me,&lo);
         printf("Time: %03d > %d new processes have arrived\n", time_tick, np);
-        dispatch_cycle(/*WRITE YOUR CODE HERE*/);
+        dispatch_cycle(/*WRITE YOUR CODE HERE*/&rt,&hi,&me,&lo,&res_avail,&memory);
     }
 
 

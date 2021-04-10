@@ -6,3 +6,5 @@ OS Lab3/lab4_source_code-1/hostd
 # OS Lab3/lab4_source_code-1/hostd.c
 OS Lab3/lab4_source_code-1/*.o
 OS Lab3/lab4_source_code-1/process
+OS Lab4/lab5_source_code/*.o
+OS Lab4/lab5_source_code/banker

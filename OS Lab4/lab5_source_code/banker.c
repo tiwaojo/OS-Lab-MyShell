@@ -352,10 +352,8 @@ int main(int argc, char *argv[])
     pthread_mutex_init(&mutex, NULL); //create mutex lock
 
     pthread_mutex_lock(&mutex); //acquire mutex lock
-
-    sem_t sem;
-
-    sem_init(&sem, 0, 1); //create semaphore & initialize to 1
+   
+    sem_init(&critical_section, 0, 1); //create semaphore & initialize to 1
 
     // Loop through the number of customers
     for (int i = 0; i < NUM_CUSTOMERS; i++)
@@ -378,7 +376,7 @@ int main(int argc, char *argv[])
 
     // Initialize pthread
     /* WRITE YOUR OWN CODE HERE */
-    // pthread_barrier_t
+    pthread_barrier_init(&customer_thread,NULL,NUM_CUSTOMERS-2);//use 2 or 1 for 3rd parameter
 
     // Initialize pthread array of NUM_CUSTOMERS
     /* WRITE YOUR OWN CODE HERE */
@@ -396,13 +394,15 @@ int main(int argc, char *argv[])
 
         // wait for the thread to process
         /* WRITE YOUR OWN CODE HERE */
-        sem_wait(&sem); //Acquire the semaphore
+        // sem_wait(&critical_section); //Acquire the semaphore
+        pthread_barrier_wait(&customer_thread);
     }
-    sem_post(&sem); //release the semaphore
+    sem_post(&critical_section); //release the semaphore
     // Join Customer Threads
     for (int i = 0; i < NUM_CUSTOMERS; i++)
         /* WRITE YOUR OWN CODE HERE */
         pthread_join(ids[i], NULL);
 
     return EXIT_SUCCESS;
+    // Execute using: "./banker 10 5 7"
 }
